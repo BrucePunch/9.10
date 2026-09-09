@@ -1,0 +1,102 @@
+# 🚀 免费节点自动测活订阅池 (含真实家宽/住宅IP甄选)
+
+> 👤 **定制规范命名**: 所有订阅节点均重命名为 `国旗 地区 序号 (家宽) - xiaohe`  
+> ⚡ **真实可用保障**: 所有节点由 `Xray-core` 建立实际代理隧道并完成真实 HTTPS 双向传输握手，拒绝虚假通畅与死节点。无论是通过免翻 CDN 直链还是官方原生 Raw 直链拉取，节点命名格式完全一致。
+
+---
+
+## 📌 全部节点总订阅链接
+
+| <div style="min-width:180px;">客户端 / 格式类型</div> | <div style="min-width:80px;">节点总数</div> | 免翻 CDN 订阅直链 (国内直连) | 官方原生 Raw 直链 (开启代理) |
+| :--- | :---: | :--- | :--- |
+| 🚀 **Clash (YAML 格式)** | `0` | [🚀 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/hezhanleiok/freesub@main/output/clash.yaml?v=1788970573) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/hezhanleiok/freesub/main/output/clash.yaml) |
+| ⚡ **V2RayN (Base64 格式)** | `0` | [⚡ 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/hezhanleiok/freesub@main/output/v2ray.txt?v=1788970573) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/hezhanleiok/freesub/main/output/v2ray.txt) |
+| 📦 **sing-box (JSON 格式)** | `0` | [📦 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/hezhanleiok/freesub@main/output/singbox.json?v=1788970573) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/hezhanleiok/freesub/main/output/singbox.json) |
+
+---
+
+## 🏠 按照家宽分类节点订阅 (住宅 IP 专区)
+> 经 MaxMind ASN 数据库与核心运营商白名单严格探测，排除所有云主机/数据中心及 CDN 任播，保留真实民用宽带。
+
+| 家宽地区 | 节点数 | V2RayN 专属订阅 | Clash 专属订阅 | sing-box 专属订阅 |
+| :--- | :---: | :---: | :---: | :---: |
+| 暂无可用家宽节点 | 0 | - | - | - |
+
+---
+
+## 🗺️ 按照国家分类节点订阅 (非家宽/数据中心节点)
+
+| 地区/国家 | 节点数 | V2RayN 专属订阅 | Clash 专属订阅 | sing-box 专属订阅 |
+| :--- | :---: | :---: | :---: | :---: |
+| 暂无可用节点 | 0 | - | - | - |
+
+---
+
+## 🔒 私有仓库（Private）无感免翻订阅方案 (基于 Cloudflare Workers)
+
+> 如果你希望将本 GitHub 仓库设置为 **Private (私有仓库)** 保护节点资产，外部客户端无法直接拉取原生 Raw 或公共 CDN 链接，可以通过以下 Cloudflare Worker 搭建轻量级私密网关反代：
+
+### 1. 获取 GitHub 永久个人令牌 (PAT)
+1. 进入 GitHub -> **Settings** -> **Developer Settings** -> **Personal access tokens (classic)**。
+2. 点击 **Generate new token (classic)**，勾选 `repo` 权限，有效期设为 `No expiration`（永不过期）。
+3. 复制保存生成的以 `ghp_` 开头的 Token。
+
+### 2. 部署 Cloudflare Worker
+登录 Cloudflare Dashboard，创建一个新的 Worker，复制以下脚本粘贴并部署：
+
+```javascript
+export default {
+  async fetch(request) {
+    const GITHUB_TOKEN = "ghp_你的GitHub永久访问令牌";
+    const OWNER = "hezhanleiok";
+    const REPO = "freesub";
+    const BRANCH = "main";
+
+    const url = new URL(request.url);
+    const filePath = "output" + url.pathname;
+    const ghUrl = "[https://raw.githubusercontent.com/](https://raw.githubusercontent.com/)" + OWNER + "/" + REPO + "/" + BRANCH + "/" + filePath;
+    
+    const res = await fetch(ghUrl, {
+      headers: {
+        "Authorization": "token " + GITHUB_TOKEN,
+        "User-Agent": "Cloudflare-Worker"
+      }
+    });
+
+    if (!res.ok) {
+      return new Response("Not Found", { status: 404 });
+    }
+
+    return new Response(await res.text(), {
+      headers: { 
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache" 
+      }
+    });
+  }
+}
+```
+
+### 3. 私有订阅链接映射方式
+部署后 Worker 会分配一个专属域名（例如 `my-sub.yourname.workers.dev`），你的客户端可以直接无感订阅：
+* **总 V2RayN 订阅**: `https://你的域名.workers.dev/v2ray.txt`
+* **总 Clash 订阅**: `https://你的域名.workers.dev/clash.yaml`
+* **总 sing-box 订阅**: `https://你的域名.workers.dev/singbox.json`
+* **台湾家宽 V2RayN**: `https://你的域名.workers.dev/residential-by-country/TW.txt`
+* **香港家宽 Clash**: `https://你的域名.workers.dev/residential-by-country/clash-HK.yaml`
+* **日本家宽 sing-box**: `https://你的域名.workers.dev/residential-by-country/singbox-JP.json`
+
+---
+
+## ⭐ 项目热度
+
+[![Star History Chart](https://api.star-history.com/svg?repos=hezhanleiok/freesub&type=Date)](https://star-history.com/#hezhanleiok/freesub&Date)
+
+---
+
+## 🛠️ 项目使用说明
+1. **自动更新机制**：GitHub Actions 每 6 小时全自动运行并刷新上述全部订阅与数据。
+2. **多客户端兼容**：
+   - **Clash / Clash Verge / Mihomo Party**：直接复制上方表格中的 **Clash 专属订阅** 链接。
+   - **v2rayN / v2rayNG**：直接复制上方表格中的 **V2RayN 专属订阅** 链接。
+   - **sing-box**：直接使用上方 **sing-box 专属订阅** 链接。
