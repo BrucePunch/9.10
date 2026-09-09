@@ -9,9 +9,9 @@
 
 | <div style="min-width:180px;">客户端 / 格式类型</div> | <div style="min-width:80px;">节点总数</div> | 免翻 CDN 订阅直链 (国内直连) | 官方原生 Raw 直链 (开启代理) |
 | :--- | :---: | :--- | :--- |
-| 🚀 **Clash (YAML 格式)** | `0` | [🚀 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/clash.yaml?v=1788972542) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/clash.yaml) |
-| ⚡ **V2RayN (Base64 格式)** | `0` | [⚡ 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/v2ray.txt?v=1788972542) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/v2ray.txt) |
-| 📦 **sing-box (JSON 格式)** | `0` | [📦 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/singbox.json?v=1788972542) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/singbox.json) |
+| 🚀 **Clash (YAML 格式)** | `0` | [🚀 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/clash.yaml?v=1788973209) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/clash.yaml) |
+| ⚡ **V2RayN (Base64 格式)** | `0` | [⚡ 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/v2ray.txt?v=1788973209) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/v2ray.txt) |
+| 📦 **sing-box (JSON 格式)** | `0` | [📦 免翻 CDN 直链](https://cdn.jsdelivr.net/gh/BrucePunch/9.10@main/output/singbox.json?v=1788973209) | [🌐 官方 Raw 直链](https://raw.githubusercontent.com/BrucePunch/9.10/main/output/singbox.json) |
 
 ---
 
